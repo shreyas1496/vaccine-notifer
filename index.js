@@ -2,10 +2,10 @@ const notifier = require("node-notifier");
 const fetch = require("node-fetch");
 const fs = require("fs");
 const { exec } = require("child_process");
-// String
-notifier.notify("Message");
+const today = (new Date(Date.now()).toLocaleString().split(',')[0]).replaceAll("/", "-");
+notifier.notify(today);
 
-const curlBody = ``;
+const curlBody = `curl -X GET "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=397&date=${today}" -H "accept: application/json"`;
 
 function check() {
   return getCurlyData()
@@ -47,4 +47,4 @@ function getCurlyData() {
   });
 }
 
-setInterval(check, 60000);
+setInterval(check, 44000);
